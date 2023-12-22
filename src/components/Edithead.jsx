@@ -72,7 +72,6 @@ function Edithead({item}) {
             }
         }
 
-
     }
     useEffect(() => {
         getAlldepartments()

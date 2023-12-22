@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { getOneDepartmentAPI } from '../services/allApi'
+import { getOneDepartmentAPI, getdepartmentHeadsAPI } from '../services/allApi'
 import { useParams } from 'react-router-dom'
 import Header from '../components/Header'
 
 function DprtDetails() {
     const [emp, setemp] = useState({})
-
+    const [head,setHead]=useState("")
     const { name } = useParams()
     const getEmployee = async () => {
         const result = await getOneDepartmentAPI(name)
@@ -17,6 +17,12 @@ function DprtDetails() {
         }
 
     }
+    const getHeadName=async()=>{
+        const result=await getdepartmentHeadsAPI()
+        if(result.status===200){
+            setHead(result.data.name)
+        }
+    }
     useEffect(()=>{
         getEmployee()
     })
@@ -26,7 +32,7 @@ function DprtDetails() {
     
                 <div className='flex justify-between'>
                 <div className='ml-10 p-10'>
-                    <h1 className='text-2xl mt-5'>Head Name:{emp.headName}</h1>
+                    <h1 className='text-2xl mt-5'>Head Name:{head}</h1>
                     <p className='text-lg mt-3'>{emp.description}</p>
 
                 </div>

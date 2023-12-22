@@ -191,7 +191,7 @@ function Admin() {
                             </Card>
                         </div>
                     ))
-                    : <p>Add departments</p>}
+                    : <p className='text-center'>Nothing to display</p>}
             </div>
             <Modal
                 show={show}
