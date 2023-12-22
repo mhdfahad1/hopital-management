@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { adminLoginAPI } from '../services/allApi'
+import { loginContext } from '../context/ContextShare'
 
 function Login() {
+    const { loggined, setLoggined } = useContext(loginContext)
     const navigate = useNavigate()
     const [login, setLogin] = useState({
         email: "", password: ""
@@ -16,6 +18,9 @@ function Login() {
             const result = await adminLoginAPI(login)
             if (result.status === 200) {
                 alert('admin logged successfully')
+                setLoggined(true)
+                sessionStorage.setItem("existingAdmin", JSON.stringify(result.data.existingAdmin))
+                sessionStorage.setItem("token", result.data.token)
                 navigate('/')
             } else {
                 alert(result.response.data)
