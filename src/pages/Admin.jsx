@@ -39,7 +39,7 @@ function Admin() {
             reader.readAsDataURL(imageFile);
             reader.addEventListener('load', () => {
                 setDepartment({ ...department, image: reader.result })
-                setPreview(reader.result)
+                // setPreview(reader.result)
             })
         }
 
@@ -88,7 +88,7 @@ function Admin() {
         if (result.status === 200) {
             setAlldepatmnts(result?.data)
         } else {
-            alert(result?.response.data)
+            alert(result?.response?.data)
         }
     }
 
@@ -117,9 +117,7 @@ function Admin() {
         navigate('/login')
     }
     useEffect(() => {
-        if (department.image) {
-            setPreview(department.image)
-        }
+        
         getAlldepartments()
 
     }, [alldepatmnts])
@@ -208,7 +206,7 @@ function Admin() {
                     <div>
                         <label className='flex justify-center text-center mb-5' htmlFor="profilepic">
                             <input onChange={(e) => convertImage(e)} id='profilepic' type="file" style={{ display: 'none' }} />
-                            <img width={'150px'} height={'200px'} src={preview ? preview : 'https://th.bing.com/th?id=OIP.ixZ69lPCOZ3ZO5UqSHQGIAHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2'} alt="profile" />
+                            <img width={'150px'} height={'200px'} src={department.image ? department.image : 'https://th.bing.com/th?id=OIP.ixZ69lPCOZ3ZO5UqSHQGIAHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.5&pid=3.1&rm=2'} alt="profile" />
                         </label>
                         <input onChange={(e) => setDepartment({ ...department, name: e.target.value })} value={department.name} type="text" className='form-control mb-3 w-[300px]' placeholder='Department-name' />
                         <input onChange={(e) => setDepartment({ ...department, year: e.target.value })} value={department.year} type="text" className='form-control mb-3 w-[300px]' placeholder='Year Founded' />

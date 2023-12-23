@@ -10,7 +10,7 @@ import { useContext } from 'react';
 import { loginContext } from './context/ContextShare';
 
 function App() {
-  const { loggined, setLoggined } = useContext(loginContext)
+  // const { loggined, setLoggined } = useContext(loginContext)
 
   return (
     <div>

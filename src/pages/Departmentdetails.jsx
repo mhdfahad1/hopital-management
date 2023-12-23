@@ -12,7 +12,6 @@ function Departmentdetails() {
 
     const [department, setDepartment] = useState({})
     const [heads, setHeads] = useState([])
-    const navigate = useNavigate()
 
     const { name } = useParams()
 
@@ -20,7 +19,7 @@ function Departmentdetails() {
         const result = await getdepartmentemployeesAPI(name)
         console.log(result);
         if (result.status === 200) {
-            setDepartment(result.data)
+            setDepartment(result?.data)
         } else {
             alert(result?.response?.data)
         }
@@ -29,7 +28,7 @@ function Departmentdetails() {
         const result = await getdepartmentHeadsAPI(name)
         console.log(result);
         if (result.status === 200) {
-            setHeads(result.data)
+            setHeads(result?.data)
         } else {
             alert(result?.response?.data)
         }
@@ -105,7 +104,7 @@ function Departmentdetails() {
                                     <Card.Text>
                                         {item.description}
                                     </Card.Text>
-                                    <Link className='btn btn-success' to={`/headDetails/${item._id}`} variant="primary">Details</Link>
+                                    <Link className='btn btn-success' to={`/headDetails/${item?._id}`} variant="primary">Details</Link>
                                 </Card.Body>
                             </Card>
                         </div>
@@ -138,7 +137,7 @@ function Departmentdetails() {
                                     <Card.Text>
                                         {item.description}
                                     </Card.Text>
-                                    <Link className='btn btn-success' to={`/employeeDetails/${item._id}`} variant="primary">Details</Link>
+                                    <Link className='btn btn-success' to={`/employeeDetails/${item?._id}`} variant="primary">Details</Link>
                                 </Card.Body>
                             </Card>
                         </div>

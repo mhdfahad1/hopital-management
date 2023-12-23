@@ -9,24 +9,26 @@ function EmployeDetails() {
     const { id } = useParams()
     const getEmployee = async () => {
         const result = await getOneEmployeeAPI(id)
-        console.log(result);
+        // console.log(result);
         if (result.status === 200) {
-            setemp(result.data)
+            setemp(result?.data)
         }else{
-            alert(result.response.data)
+            alert(result?.response?.data)
         }
 
     }
     const Headname=async(name)=>{
         const result=await getONeHeadbynameAPI(name)
+        console.log(result?.data?._id);
         if(result.status===200){
-            navigate(`/headDetails/${result.data._id}`)
+             navigate(`/headDetails/${result?.data?._id}`)
         }else{
             alert(result.response.data)
         }
     }
     useEffect(()=>{
         getEmployee()
+        // Headname(emp.name)
     })
     return (
         <div>
